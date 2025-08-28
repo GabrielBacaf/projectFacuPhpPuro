@@ -1,14 +1,17 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index</title>
-</head>
-<body>
+<?php
+$titulo = "Listar Livro";
+ob_start(); // começa a capturar o HTML
 
+?>
 
-
-
+<section>
     
-</body>
-</html>
+        <h1>Listar Livros</h1>
+
+        <?php include_once __DIR__ . '/lit.php'; ?>
+</section>
+
+<?php
+$conteudo = ob_get_clean(); // guarda o HTML capturado
+include_once __DIR__ . '/layout.php'; // inclui o layout
+?>

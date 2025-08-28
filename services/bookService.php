@@ -1,53 +1,68 @@
 <?php
-require_once '../config/conexao.php'; 
+require_once '../config/conexao.php';
 
-$conn = conectaBanco();
 
 // Exemplo de uso: inserir um livro
-function storeBook($title, $author, $year, $genre) {
-    global $conn;
+function storeBook(array $data): bool
+{
+    $conn = conectaBanco();
 
-    $sql = "INSERT INTO books (title, author, published_year, genre) VALUES (?, ?, ?, ?)";
+    $sql = "INSERT INTO books (titulo, autor, editora, ano_publicacao, genero) 
+            VALUES (?, ?, ?, ?, ?)";
+
     $stmt = mysqli_prepare($conn, $sql);
-    mysqli_stmt_bind_param($stmt, "ssis", $title, $author, $year, $genre);
 
-    if (mysqli_stmt_execute($stmt)) {
-        echo "Livro inserido com sucesso!";
-    } else {
-        echo "Erro ao inserir livro: " . mysqli_error($conn);
+    if ($stmt === false) {
+        // Se não conseguiu preparar, retorna false
+        return false;
     }
+
+    // Faz o bind dos parâmetros (s = string, i = integer)
+    mysqli_stmt_bind_param(
+        $stmt,
+        "sssis", // s = string, s = string, s = string, i = integer, s = string
+        $data['titulo'],
+        $data['autor'],
+        $data['editora'],
+        $data['ano_publicacao'],
+        $data['genero']
+    );
+
+    $result = mysqli_stmt_execute($stmt);
 
     mysqli_stmt_close($stmt);
+    mysqli_close($conn);
+
+    return $result; // true se sucesso, false se erro
 }
 
-
-
-
-function listBooks() {
-    // Conexão com o banco de dados
-  
-    if ($conn->connect_error) {
-        die("Falha na conexão: " . $conn->connect_error);
-    }
+function listBooks(): array
+{
+    $conn = conectaBanco();
 
     $sql = "SELECT * FROM books";
-    $result = $conn->query($sql);
+
+
+    $result = mysqli_query($conn, $sql);
 
     $books = [];
-    if ($result->num_rows > 0) {
-        while($row = $result->fetch_assoc()) {
+
+    if ($result) {
+        while ($row = mysqli_fetch_assoc($result)) {
             $books[] = $row;
         }
+        mysqli_free_result($result);
     }
+    mysqli_close($conn);
 
-    $conn->close();
     return $books;
 }
 
-function storeBook(array $data) {
-    // Conexão com o banco de dados
-    $conn = new mysqli('localhost
-}
+function updateBook(array $data) {}
+
+function deleteBook(int $id) {}
+
+
 
 // if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 //     storeBook($_POST);

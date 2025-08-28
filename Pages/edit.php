@@ -4,9 +4,14 @@ ob_start(); // captura todo o conteúdo da página
 ?>
 
 <section>
-    <form action="">
+   <form action="../controller/bookController.php" method="POST">
+        <input type="hidden" name="action" value="update">
+
         <h1>Editar Livro</h1>
+
+        <?php include_once __DIR__ . '/session.php'; ?>
         <?php include_once __DIR__ . '/_form.php'; ?>
+        
         <button type="submit">Enviar</button>
     </form>
 </section>
