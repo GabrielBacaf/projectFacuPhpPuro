@@ -62,10 +62,3 @@ function updateBook(array $data) {}
 
 function deleteBook(int $id) {}
 
-
-
-// if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-//     storeBook($_POST);
-//     header('Location: ../views/listar.php');
-//     exit;
-// }
