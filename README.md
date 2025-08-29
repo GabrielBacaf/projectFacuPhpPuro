@@ -1,7 +1,45 @@
-O projeto possui um layout base que serve como referência para todas as páginas. Todas as páginas devem incluir esse layout usando include_once DIR . '/layout.php';. Dessa forma, o CSS definido no layout será automaticamente herdado por todas as páginas, garantindo consistência visual. No arquivo layout.php, já existe a referência ao CSS que será criado na pasta correspondente, então não é necessário se preocupar em vincular o estilo manualmente em cada página.
+Projeto PHP Puro
+Estrutura do Projeto
+Layout Base
 
-A pasta Service é responsável por executar as ações diretamente relacionadas ao banco de dados. É nela que ficam todas as funções de salvar, editar, atualizar e deletar registros. Sempre que for necessário interagir com o banco, deve-se utilizar a função conectaBanco() presente na pasta config, que garante a comunicação correta com o banco e evita duplicação de código.
+O projeto possui um layout base que serve como referência para todas as páginas.
+Todas as páginas devem incluir esse layout utilizando:
 
-O Controller atua como intermediário entre as páginas e os serviços. Ele recebe os dados enviados pelas páginas, envia esses dados para o service executar as ações necessárias e retorna os resultados para a página. Por exemplo, em uma listagem, o controller solicita os dados ao service e os envia para a página que fará a exibição das informações.
+include_once DIR . '/layout.php';
 
-A conexão com o banco de dados é configurada para criar o banco caso ele não exista, portanto não há necessidade de criar manualmente. Para configurar o MySQL, é possível utilizar os seguintes parâmetros: $server = "localhost"; $user = "root"; $password = ""; $basedados = "projetophp"; $porta = 3380;. A porta deve corresponder à porta usada pelo seu MySQL no Apache. Caso ocorram problemas de conexão, é possível resolver alterando a porta diretamente no arquivo c:\xampp\phpMyAdmin\config.inc.php.
+
+Dessa forma, o CSS definido no layout será automaticamente herdado por todas as páginas, garantindo consistência visual.
+O arquivo layout.php já contém a referência ao CSS que será criado na pasta correspondente, então não é necessário vincular o estilo manualmente em cada página.
+
+Service
+
+A pasta Service é responsável por executar as ações relacionadas ao banco de dados.
+Ela contém funções para salvar, editar, atualizar e deletar registros.
+Sempre que for necessário interagir com o banco, deve-se utilizar a função conectaBanco() presente na pasta config, que garante a comunicação correta com o banco e evita duplicação de código.
+
+Controller
+
+O Controller atua como intermediário entre as páginas e os serviços.
+Ele recebe os dados enviados pelas páginas, envia esses dados para o service executar as ações necessárias e retorna os resultados para a página.
+Por exemplo, em uma listagem, o controller solicita os dados ao service e os envia para a página que fará a exibição das informações.
+
+Configuração do Banco de Dados
+
+A conexão com o banco de dados é configurada para criar o banco caso ele não exista, portanto não é necessário criar manualmente.
+
+Parâmetros padrão de conexão MySQL:
+
+$server = "localhost";
+$user = "root";
+$password = "";
+$basedados = "projetophp";
+$porta = 3380;
+
+
+A porta deve corresponder à utilizada pelo MySQL no Apache.
+Caso ocorram problemas de conexão, é possível alterar a porta diretamente no arquivo:
+C:\xampp\phpMyAdmin\config.inc.php.
+
+Se você quiser, posso também criar uma versão ainda mais “profissional” do README, incluindo índice, instruções de instalação, execução e exemplos de uso para deixar pronto para um repositório no GitHub. Isso deixaria o README alinhado com padrões de projetos open source.
+
+Quer que eu faça essa versão completa?
