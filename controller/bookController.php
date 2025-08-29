@@ -11,13 +11,15 @@ if ($method === 'POST' || $method === 'GET') {
     switch ($action) {
         case 'store':
             session_start();
-            if (storeBook($_POST)) {
-                $_SESSION['success'] = 'Livro salvo com sucesso.';
-            } else {
-                $_SESSION['error'] = 'Erro ao salvar o livro.';
+            try {
+                if (storeBook($_POST)) {
+                    $_SESSION['success'] = 'Livro salvo com sucesso.';
+                }
+            } catch (Exception $e) {
+                $_SESSION['error'] = $e->getMessage(); // mensagem amigável
             }
 
-            header('Location: ../pages/create.php');
+            header('Location: ../Pages/create.php');
             exit;
             break;
 

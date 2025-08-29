@@ -5,35 +5,40 @@ require_once '../config/conexao.php';
 // Exemplo de uso: inserir um livro
 function storeBook(array $data): bool
 {
-    $conn = conectaBanco();
+    try {
+        $conn = conectaBanco(); 
 
-    $sql = "INSERT INTO books (titulo, autor, editora, ano_publicacao, genero) 
-            VALUES (?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO books (titulo, autor, editora, ano_publicacao, genero) 
+                VALUES (?, ?, ?, ?, ?)";
+        $stmt = mysqli_prepare($conn, $sql);
+        if ($stmt === false) {
+            throw new Exception("Erro ao preparar a query.");
+        }
 
-    $stmt = mysqli_prepare($conn, $sql);
+        mysqli_stmt_bind_param(
+            $stmt,
+            "sssis",
+            $data['titulo'],
+            $data['autor'],
+            $data['editora'],
+            $data['ano_publicacao'],
+            $data['genero']
+        );
 
-    if ($stmt === false) {
-        // Se não conseguiu preparar, retorna false
-        return false;
+        $result = mysqli_stmt_execute($stmt);
+
+        mysqli_stmt_close($stmt);
+        mysqli_close($conn);
+
+        if (!$result) {
+            throw new Exception("Erro ao executar a query.");
+        }
+
+        return true;
+    } catch (Exception $e) {
+        // Repassa para o Controller
+        throw $e;
     }
-
-    // Faz o bind dos parâmetros (s = string, i = integer)
-    mysqli_stmt_bind_param(
-        $stmt,
-        "sssis", // s = string, s = string, s = string, i = integer, s = string
-        $data['titulo'],
-        $data['autor'],
-        $data['editora'],
-        $data['ano_publicacao'],
-        $data['genero']
-    );
-
-    $result = mysqli_stmt_execute($stmt);
-
-    mysqli_stmt_close($stmt);
-    mysqli_close($conn);
-
-    return $result; // true se sucesso, false se erro
 }
 
 function listBooks(): array
@@ -61,4 +66,3 @@ function listBooks(): array
 function updateBook(array $data) {}
 
 function deleteBook(int $id) {}
-
