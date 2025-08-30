@@ -1,5 +1,5 @@
 <?php
-require_once 'conexao.php';
+include_once __DIR__ . '/conexao.php';
 
 function seedBooks($conn)
 {

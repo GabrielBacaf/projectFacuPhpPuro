@@ -1,3 +1,5 @@
+Obs: a pasta que englobla o projetem tem que ser projectFacuPhpPuro
+
 Projeto PHP Puro
 Estrutura do Projeto
 Layout Base
