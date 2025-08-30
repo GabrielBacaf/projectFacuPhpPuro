@@ -4,17 +4,20 @@ require_once '../services/bookService.php';
 
 $method = $_SERVER['REQUEST_METHOD'];
 
-if ($method === 'POST' || $method === 'GET') {
+if ($method === 'POST' || $method == 'get') {
     $action = $_POST['action'] ?? ($_POST['_method'] ?? '');
 
 
     switch ($action) {
         case 'store':
             session_start();
-            if (storeBook($_POST)) {
-                $_SESSION['success'] = 'Livro salvo com sucesso.';
-            } else {
-                $_SESSION['error'] = 'Erro ao salvar o livro.';
+            try {
+                
+                if (storeBook($_POST)) {
+                    $_SESSION['success'] = 'Livro salvo com sucesso.';
+                }
+            } catch (Exception $e) {
+                $_SESSION['error'] = $e->getMessage(); 
             }
 
             header('Location: ../pages/create.php');
@@ -23,12 +26,15 @@ if ($method === 'POST' || $method === 'GET') {
 
         case 'update':
             session_start();
-            if (updateBook($_POST)) {
-                $_SESSION['success'] = 'Livro Atualizado com sucesso.';
-            } else {
-                $_SESSION['error'] = 'Erro ao atualizar o livro.';
-            }
+            try{
+                if(updateBook($_POST)){
+                    $_SESSION['success'] = 'Livro salvo com sucesso!';
+                }
+            }catch(Exception $e){
+                $_SESSION['error'] = $e->getMessage();
 
+            }
+            
             header('Location: ../pages/edit.php');
             exit;
             break;
