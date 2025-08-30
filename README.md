@@ -39,7 +39,3 @@ $porta = 3380;
 A porta deve corresponder à utilizada pelo MySQL no Apache.
 Caso ocorram problemas de conexão, é possível alterar a porta diretamente no arquivo:
 C:\xampp\phpMyAdmin\config.inc.php.
-
-Se você quiser, posso também criar uma versão ainda mais “profissional” do README, incluindo índice, instruções de instalação, execução e exemplos de uso para deixar pronto para um repositório no GitHub. Isso deixaria o README alinhado com padrões de projetos open source.
-
-Quer que eu faça essa versão completa?
