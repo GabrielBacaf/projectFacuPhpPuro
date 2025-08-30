@@ -4,55 +4,74 @@ require_once '../services/bookService.php';
 
 $method = $_SERVER['REQUEST_METHOD'];
 
-if ($method === 'POST' || $method == 'get') {
-    $action = $_POST['action'] ?? ($_POST['_method'] ?? '');
+$action = ($method === 'POST')
+    ? ($_POST['action'] ?? '')
+    : ($_GET['action'] ?? '');
 
+switch ($action) {
+    case 'store':
+        session_start();
+        try {
 
-    switch ($action) {
-        case 'store':
-            session_start();
-            try {
-                
-                if (storeBook($_POST)) {
-                    $_SESSION['success'] = 'Livro salvo com sucesso.';
-                }
-            } catch (Exception $e) {
-                $_SESSION['error'] = $e->getMessage(); 
+            if (storeBook($_POST)) {
+                $_SESSION['success'] = 'Livro salvo com sucesso.';
             }
+        } catch (Exception $e) {
+            $_SESSION['error'] = $e->getMessage();
+        }
 
-            header('Location: ../pages/create.php');
-            exit;
-            break;
+        header('Location: ../pages/create.php');
+        exit;
+        break;
 
-        case 'update':
-            session_start();
-            try{
-                if(updateBook($_POST)){
-                    $_SESSION['success'] = 'Livro salvo com sucesso!';
-                }
-            }catch(Exception $e){
-                $_SESSION['error'] = $e->getMessage();
-
+    case 'edit':
+        try {
+            $id = isset($_GET['id']) ? (int) $_GET['id'] : null;
+            if ($id) {
+                session_start();
+                $_SESSION['book'] = editBook($id);
+                header('Location: ../pages/edit.php');
+                exit;
             }
-            
-            header('Location: ../pages/edit.php');
-            exit;
-            break;
+        } catch (Exception $e) {
+            $_SESSION['error'] = $e->getMessage();
+        }
+        break;
 
-        case 'delete':
-            deleteBook($_POST['id']);
-            header('Location: ../pages/create.php');
-            exit;
-            break;
+    case 'update':
+        session_start();
+        try {
+            if (updateBook($_POST)) {
+                $_SESSION['success'] = 'Livro Atualizado com sucesso!';
+                header('Location: ../pages/index.php');
+                exit;
+                break;
+            }
+        } catch (Exception $e) {
+            $_SESSION['error'] = $e->getMessage();
+        }
 
-        case 'get':
-            session_start();
-            $_SESSION['books'] = listBooks();
-            header('Location: ../pages/index.php');
-            exit;
-            break;
+        header('Location: ../pages/edit.php');
+        exit;
+        break;
 
-        default:
-            echo "Ação inválida.";
-    }
+    case 'delete':
+        session_start();
+        try {
+            if (deleteBook((int)$_POST['id'])) {
+                $_SESSION['success'] = 'Livro Excluido com sucesso!';
+                header('Location: ../pages/index.php');
+                exit;
+                break;
+            }
+        } catch (Exception $e) {
+            $_SESSION['error'] = 'Erro ao excluir o livro';
+        }
+
+        header('Location: ../pages/index.php');
+        exit;
+        break;
+
+    default:
+        echo "Ação inválida.";
 }

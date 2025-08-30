@@ -1,5 +1,5 @@
  <?php
-    session_start();
+   session_status() === PHP_SESSION_NONE ? session_start() : null;
 
     if (isset($_SESSION['success'])) {
         echo "<p style='color:green'>" . $_SESSION['success'] . "</p>";

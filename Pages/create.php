@@ -9,8 +9,6 @@ ob_start(); // captura todo o conteúdo da página
         <input type="hidden" name="action" value="store">
 
         <h1>Cadastrar Livro</h1>
-
-        <?php include_once __DIR__ . '/session.php'; ?>
         <?php include_once __DIR__ . '/_form.php'; ?>
 
         <button type="submit">Enviar</button>
