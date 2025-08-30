@@ -1,14 +1,15 @@
 <?php
+
+session_start();
+
+
 $titulo = "Listar Livro";
 ob_start(); // começa a capturar o HTML
-
 ?>
 
 <section>
-    
-        <h1>Listar Livros</h1>
-
-        <?php include_once __DIR__ . '/lit.php'; ?>
+    <h2 >Listar livros</h2>
+    <?php include_once __DIR__ . '/list.php'; ?>
 </section>
 
 <?php
