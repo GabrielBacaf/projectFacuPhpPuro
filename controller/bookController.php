@@ -1,6 +1,6 @@
 <?php
-require_once '../config/conexao.php';
-require_once '../services/bookService.php';
+
+require_once __DIR__ . '/../services/bookService.php';
 
 $method = $_SERVER['REQUEST_METHOD'];
 
@@ -9,18 +9,23 @@ $action = ($method === 'POST')
     : ($_GET['action'] ?? '');
 
 switch ($action) {
+    case 'create':
+        header('Location:  /projectFacuPhpPuro/pages/create.php');
+        exit;
+        break;
+
     case 'store':
         session_start();
         try {
 
             if (storeBook($_POST)) {
-                $_SESSION['success'] = 'Livro salvo com sucesso.';
+                $_SESSION['success'] = 'Livro Criado com sucesso.';
             }
         } catch (Exception $e) {
             $_SESSION['error'] = $e->getMessage();
         }
 
-        header('Location: ../pages/create.php');
+        header('Location:  /projectFacuPhpPuro/index.php');
         exit;
         break;
 
@@ -30,7 +35,7 @@ switch ($action) {
             if ($id) {
                 session_start();
                 $_SESSION['book'] = editBook($id);
-                header('Location: ../pages/edit.php');
+                header('Location:  /projectFacuPhpPuro/pages/edit.php');
                 exit;
             }
         } catch (Exception $e) {
@@ -43,7 +48,7 @@ switch ($action) {
         try {
             if (updateBook($_POST)) {
                 $_SESSION['success'] = 'Livro Atualizado com sucesso!';
-                header('Location: ../pages/index.php');
+                header('Location:  /projectFacuPhpPuro/index.php');
                 exit;
                 break;
             }
@@ -51,7 +56,7 @@ switch ($action) {
             $_SESSION['error'] = $e->getMessage();
         }
 
-        header('Location: ../pages/edit.php');
+        header('Location:  /projectFacuPhpPuro/pages/edit.php');
         exit;
         break;
 
@@ -60,7 +65,7 @@ switch ($action) {
         try {
             if (deleteBook((int)$_POST['id'])) {
                 $_SESSION['success'] = 'Livro Excluido com sucesso!';
-                header('Location: ../pages/index.php');
+                header('Location:  /projectFacuPhpPuro/index.php');
                 exit;
                 break;
             }
@@ -68,7 +73,7 @@ switch ($action) {
             $_SESSION['error'] = 'Erro ao excluir o livro';
         }
 
-        header('Location: ../pages/index.php');
+        header('Location:  /projectFacuPhpPuro/index.php');
         exit;
         break;
 

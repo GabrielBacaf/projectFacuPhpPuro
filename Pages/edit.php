@@ -7,7 +7,7 @@ ob_start();
 ?>
 
 <section>
-   <form action="../controller/bookController.php" method="POST">
+   <form action="/projectFacuPhpPuro/controller/bookController.php" method="POST">
         <input type="hidden" name="action" value="update">
         <input type="hidden" name="id" value="<?= $book['id']?>">
         <h1>Editar Livro</h1>

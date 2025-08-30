@@ -1,5 +1,6 @@
 <?php
-include_once '../services/bookService.php';
+include_once __DIR__ . '/../services/bookService.php';
+
 $books = listBooks();
 ?>
 <?php if ($books): ?>
@@ -20,12 +21,12 @@ $books = listBooks();
                 <td><?= htmlspecialchars($book['ano_publicacao'] ?? '') ?></td>
                 <td><?= htmlspecialchars($book['genero'] ?? '') ?></td>
                 <td>
-                    <form action="../controller/bookController.php" method="GET" style="display:inline;">
+                    <form action="/projectFacuPhpPuro/controller/bookController.php" method="GET" style="display:inline;">
                         <input type="hidden" name="action" value="edit">
                         <input type="hidden" name="id" value="<?= $book['id'] ?>">
                         <button type="submit">Editar</button>
                     </form>
-                    <form action="../controller/bookController.php" method="POST" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja excluir este livro?');">
+                    <form action="/projectFacuPhpPuro/controller/bookController.php" method="POST" style="display:inline;" onsubmit="return confirm('Tem certeza que deseja excluir este livro?');">
                         <input type="hidden" name="action" value="delete">
                         <input type="hidden" name="id" value="<?= $book['id'] ?>">
                         <button type="submit">Deletar</button>

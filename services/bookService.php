@@ -1,5 +1,5 @@
 <?php
-require_once '../config/conexao.php';
+require_once __DIR__ . '/../Config/conexao.php';
 
 function listBooks(): array
 {

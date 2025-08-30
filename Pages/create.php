@@ -5,7 +5,7 @@ ob_start(); // captura todo o conteúdo da página
 ?>
 
 <section>
-    <form action="../controller/bookController.php" method="POST">
+    <form action="/projectFacuPhpPuro/controller/bookController.php" method="POST">
         <input type="hidden" name="action" value="store">
 
         <h1>Cadastrar Livro</h1>
