@@ -1,5 +1,9 @@
-html {
+html, body {
     height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Helvetica, Arial, sans-serif;
+    background-attachment: fixed; /* válido para body */
 }
 
 .container {
@@ -9,69 +13,73 @@ html {
     background-color: #f9f9f9;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    height: 900px;
-    width: 1080px;
-    justify-items: center;
-
+    width: 100%; /* melhor usar 100% e controlar via max-width */
+    height: 900px; /* se for fixo, ok, mas pode ser melhor auto */
+    display: flex; /* se quiser centralizar itens */
+    justify-content: center; /* centraliza horizontalmente os itens filhos */
+    align-items: center; /* centraliza verticalmente os itens filhos */
+    box-sizing: border-box; /* garante padding dentro da largura */
 }
 
-body {
-    
-    margin: 0;
-    padding: 0;
-    background-attachment: fixed;
-    font-family: Helvetica, Arial, sans-serif;
-    height: 100%;
 
-}
 
 #home {
+    min-width: 1080px;
+    min-height:900px ;
+     justify-content: center; /* horizontal */
+    align-items: center;    
+    max-width: 1200px;
+    width: 100%; /* evita ultrapassar o container */
+    height: 900px;
     padding-top: 100px;
     background-color: #f9f9f9;
-
+    box-sizing: border-box;
 }
 
 .navbar-transparente {
     position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    font-size: 18px;
-    background: rgba(0, 0, 0, 0.724);
     height: 70px;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 15px;
+    font-size: 18px;
+    background: rgba(0, 0, 0, 0.724);
+    box-sizing: border-box;
 }
-
 
 .navbar-transparente .nav-item .nav-link {
     color: white;
     padding-left: 50px;
-    transition: color 0.4s;
     text-decoration: none;
-
+    transition: color 0.4s;
 }
 
 .navbar-transparente .nav-item .nav-link:hover {
     color: hsla(243, 89%, 18%, 0.275);
 }
-
 .lista-livros {
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* se quiser que os livros quebrem linha */
+    gap: 20px;       /* espaçamento entre livros */
 }
 
-/* Cada caixa de livro */
 .livro {
     background-color: #fff;
     border: 1px solid #ccc;
     width: 250px;
+    
     padding: 15px;
     text-align: center;
     border-radius: 8px;
     transition: transform 0.2s;
     cursor: pointer;
+    box-sizing: border-box;
 }
 
 .livro:hover {
@@ -91,7 +99,7 @@ body {
 
 .row {
     display: grid;
-    grid-template-columns: 1fr 1fr; 
+    grid-template-columns: repeat(2, 1fr); /* mais legível */
     gap: 20px;
     margin-top: 20px;
 }
@@ -109,12 +117,14 @@ label {
 
 input[type="text"],
 input[type="number"],
-input[type="file"] {
+input[type="file"]
+ { 
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 8px;
     font-size: 14px;
     transition: 0.3s;
+    box-sizing: border-box;
 }
 
 input[type="text"]:focus,
@@ -125,7 +135,6 @@ input[type="file"]:focus {
     outline: none;
 }
 
-/* Se quiser, botão de submit estilizado */
 button {
     margin-top: 20px;
     padding: 12px 20px;
@@ -141,8 +150,10 @@ button {
 button:hover {
     background-color: #0056b3;
 }
-h1{
-      display: flex;
+
+h1 {
+    display: flex;
     justify-content: center;
     font-size: 25px;
+    margin: 0; /* evita margens extras do h1 */
 }

@@ -1,18 +1,22 @@
 <?php
 session_start();
 $titulo = "Editar Livro";
-$book = $_SESSION['book'] ?? null;
-ob_start(); 
+session_start();
+$errors = $_SESSION['validade'] ?? [];
+$book = $_SESSION['book'] ?? [];
+unset($_SESSION['validade']);
+unset($_SESSION['book']);
+ob_start();
 
 ?>
 
 <section>
-   <form action="/projectFacuPhpPuro/controller/bookController.php" method="POST" enctype="multipart/form-data">
+    <form action="/projectFacuPhpPuro/controller/bookController.php" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="action" value="update">
-        <input type="hidden" name="id" value="<?= $book['id']?>">
+        <input type="hidden" name="id" value="<?= $book['id'] ?>">
         <h1>Editar Livro</h1>
         <?php include_once __DIR__ . '/_form.php'; ?>
-        
+
         <button type="submit">Enviar</button>
     </form>
 </section>

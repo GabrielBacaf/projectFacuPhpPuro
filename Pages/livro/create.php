@@ -1,6 +1,14 @@
 <?php
-$titulo = "Cadastrar Livro";
-ob_start(); // captura todo o conteúdo da página
+require_once __DIR__ . '/../../services/autoraService.php';
+$titulo = "Cadastro do Livro";
+session_start();
+$errors = $_SESSION['validade'] ?? [];
+$book = $_SESSION['book'] ?? [];
+$autoras = listAutoras();
+unset($_SESSION['validade']);
+unset($_SESSION['book']);
+
+ob_start();
 
 ?>
 
@@ -8,7 +16,7 @@ ob_start(); // captura todo o conteúdo da página
     <form action="/projectFacuPhpPuro/controller/bookController.php" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="action" value="store">
 
-        <h1>Cadastre o Livro</h1>
+        <h1>Cadastro do  Livro</h1>
         <?php include_once __DIR__ . '/_form.php'; ?>
         <button type="submit">Enviar</button>
     </form>
