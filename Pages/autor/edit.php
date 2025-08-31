@@ -7,7 +7,7 @@ ob_start();
 ?>
 
 <section>
-   <form action="/projectFacuPhpPuro/controller/bookController.php" method="POST">
+   <form action="/projectFacuPhpPuro/controller/bookController.php" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="action" value="update">
         <input type="hidden" name="id" value="<?= $book['id']?>">
         <h1>Editar Livro</h1>
@@ -19,5 +19,5 @@ ob_start();
 
 <?php
 $conteudo = ob_get_clean(); // guarda o HTML capturado
-include_once __DIR__ . '/layout.php'; // inclui o layout, que vai usar $conteudo
+include_once __DIR__ . '/../fragments/layout.php'; // inclui o layout, que vai usar $conteudo
 ?>
