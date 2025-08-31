@@ -1,0 +1,148 @@
+html {
+    height: 100%;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    height: 900px;
+    width: 1080px;
+    justify-items: center;
+
+}
+
+body {
+    
+    margin: 0;
+    padding: 0;
+    background-attachment: fixed;
+    font-family: Helvetica, Arial, sans-serif;
+    height: 100%;
+
+}
+
+#home {
+    padding-top: 100px;
+    background-color: #f9f9f9;
+
+}
+
+.navbar-transparente {
+    position: absolute;
+    width: 100%;
+    font-size: 18px;
+    background: rgba(0, 0, 0, 0.724);
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+
+
+.navbar-transparente .nav-item .nav-link {
+    color: white;
+    padding-left: 50px;
+    transition: color 0.4s;
+    text-decoration: none;
+
+}
+
+.navbar-transparente .nav-item .nav-link:hover {
+    color: hsla(243, 89%, 18%, 0.275);
+}
+
+.lista-livros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* Cada caixa de livro */
+.livro {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    width: 250px;
+    padding: 15px;
+    text-align: center;
+    border-radius: 8px;
+    transition: transform 0.2s;
+    cursor: pointer;
+}
+
+.livro:hover {
+    transform: scale(1.05);
+}
+
+.livro img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+.livro h2 {
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.row div {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="file"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="file"]:focus {
+    border-color: #007BFF;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    outline: none;
+}
+
+/* Se quiser, botão de submit estilizado */
+button {
+    margin-top: 20px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: #007BFF;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+h1{
+      display: flex;
+    justify-content: center;
+    font-size: 25px;
+}
