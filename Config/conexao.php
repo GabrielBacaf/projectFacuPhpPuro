@@ -7,7 +7,7 @@ function conectaBanco()
     $user       = "root";
     $password   = "";
     $basedados  = "projetophp";
-    $porta      = 3306;
+    $porta      = 3307;
 
     try {
 
@@ -37,25 +37,27 @@ function conectaBanco()
             descricao TEXT DEFAULT NULL,
             premios TEXT DEFAULT NULL,
             imagem VARCHAR(255) DEFAULT NULL,
+            resumo TEXT DEFAULT NULL, 
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-        )";
+             )";
 
         if (!mysqli_query($conn, $sqlCreateAutoras)) {
             throw new Exception("Erro ao criar a tabela 'autoras'.");
         }
 
         $sqlCreateBooks = "CREATE TABLE IF NOT EXISTS books (
-    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    titulo VARCHAR(100) NOT NULL,
-    editora VARCHAR(100) DEFAULT NULL,
-    ano_publicacao INT(4) NOT NULL,
-    genero VARCHAR(50) DEFAULT NULL,
-    imagem VARCHAR(255) DEFAULT NULL,
-    autora_id INT UNSIGNED NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (autora_id) REFERENCES autoras(id) 
-        ON DELETE RESTRICT ON UPDATE CASCADE
-)";
+            id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            titulo VARCHAR(100) NOT NULL,
+            editora VARCHAR(100) DEFAULT NULL,
+            ano_publicacao INT(4) NOT NULL,
+            genero VARCHAR(50) DEFAULT NULL,
+            imagem VARCHAR(255) DEFAULT NULL,
+            resumo TEXT DEFAULT NULL, 
+            autora_id INT UNSIGNED NOT NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (autora_id) REFERENCES autoras(id) 
+                ON DELETE RESTRICT ON UPDATE CASCADE
+            )";
 
         if (!mysqli_query($conn, $sqlCreateBooks)) {
             throw new Exception("Erro ao criar a tabela 'books'.");

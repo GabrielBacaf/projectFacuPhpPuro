@@ -24,41 +24,57 @@ function listBooks(): array
 }
 
 
-function storeBook(array $data): bool
+function storeBook(array $data, array $file): bool
 {
     try {
         $conn = conectaBanco();
 
-        $sql = "INSERT INTO books (titulo, autor, editora, ano_publicacao, genero) 
-                VALUES (?, ?, ?, ?, ?)";
+        $imagemPath = null;
+
+        // Se veio arquivo de imagem (já validado no Request)
+        if ($file && $file['error'] === UPLOAD_ERR_OK) {
+            $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
+            $imagemNome = uniqid('book_') . '.' . $ext;
+            $destino = __DIR__ . '/../static/img/' . $imagemNome;
+
+            if (!move_uploaded_file($file['tmp_name'], $destino)) {
+                throw new Exception("Falha ao mover o arquivo enviado.");
+            }
+
+            $imagemPath = 'static/img/' . $imagemNome; // caminho relativo para o banco
+        }
+
+        $sql = "INSERT INTO books (titulo, editora, ano_publicacao, genero, imagem, autora_id) 
+                VALUES (?, ?, ?, ?, ?, ?)";
+
         $stmt = mysqli_prepare($conn, $sql);
         if ($stmt === false) {
-            throw new Exception("Erro ao preparar a query.");
+            throw new Exception("Erro ao preparar a query: " . mysqli_error($conn));
         }
 
         mysqli_stmt_bind_param(
             $stmt,
-            "sssis",
+            "ssissi", // s=string, i=int
             $data['titulo'],
-            $data['autor'],
             $data['editora'],
             $data['ano_publicacao'],
-            $data['genero']
+            $data['genero'],
+            $imagemPath,
+            $data['autor_id'] // vem do <select>
         );
 
         $result = mysqli_stmt_execute($stmt);
 
+        if (!$result) {
+            throw new Exception("Erro ao executar a query: " . mysqli_stmt_error($stmt));
+        }
+
         mysqli_stmt_close($stmt);
         mysqli_close($conn);
 
-        if (!$result) {
-            throw new Exception("Erro ao executar a query.");
-        }
-
         return true;
     } catch (Exception $e) {
-        // Repassa para o Controller
-        throw $e;
+        throw $e; // repassa para o controller tratar
     }
 }
 function editBook(int $id): array
@@ -139,12 +155,12 @@ function deleteBook(int $id): bool
     try {
         $conn = conectaBanco();
 
-       
+
         if ($id <= 0) {
             throw new Exception("ID inválido para exclusão.");
         }
 
-       
+
         $sql = "DELETE FROM books WHERE id = ?";
 
         $stmt = mysqli_prepare($conn, $sql);
@@ -165,7 +181,7 @@ function deleteBook(int $id): bool
 
         return true;
     } catch (Exception $e) {
-        
+
         throw $e;
     }
 }

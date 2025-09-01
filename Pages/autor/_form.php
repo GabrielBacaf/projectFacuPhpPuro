@@ -24,4 +24,8 @@
         <label for="imagem">Imagem da Autora</label>
         <input type="file" name="imagem" id="imagem" accept="image/*">
     </div>
+    <div>
+    <label for="autor_id">Autora</label>
+    
+</div>
 </div>
