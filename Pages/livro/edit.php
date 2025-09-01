@@ -10,14 +10,15 @@ ob_start();
 
 ?>
 
-<section>
+<section class="formCadastro">
     <form action="/projectFacuPhpPuro/controller/bookController.php" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="action" value="update">
         <input type="hidden" name="id" value="<?= $book['id'] ?>">
         <h1>Editar Livro</h1>
         <?php include_once __DIR__ . '/_form.php'; ?>
-
-        <button type="submit">Enviar</button>
+        <div class="button-azul">
+            <button type="submit">Enviar</button>
+        </div>
     </form>
 </section>
 

@@ -11,21 +11,25 @@
         <label for="nacionalidade">Nacionalidade</label>
         <input type="text" name="nacionalidade" id="nacionalidade" value="<?= htmlspecialchars($autora['nacionalidade'] ?? '') ?>">
     </div>
-    <div>
-        <label for="descricao">Descrição/Biografia</label>
-        <textarea name="descricao" id="descricao"><?= htmlspecialchars($autora['descricao'] ?? '') ?></textarea>
-    </div>
+
     <div>
         <label for="premios">Prêmios</label>
-        <textarea name="premios" id="premios"><?= htmlspecialchars($autora['premios'] ?? '') ?></textarea>
+        <input type="text" name="premios" id="premios" value="<?= htmlspecialchars($autora['premios'] ?? '') ?>">
     </div>
-    <!-- Novo campo para imagem -->
+
     <div>
-        <label for="imagem">Imagem da Autora</label>
-        <input type="file" name="imagem" id="imagem" accept="image/*">
+        <label for="imagem">Imagem do Autora</label>
+        <input class="file" type="file" name="imagem" accept="image/*">
+        <?php if (!empty($errors['imagem'])): ?>
+            <span style="color:red"><?= htmlspecialchars($errors['imagem']) ?></span>
+        <?php endif; ?>
     </div>
+
     <div>
-    <label for="autor_id">Autora</label>
-    
-</div>
+        <label for="descricao">Descrição/Biografia</label>
+        <textarea class="resumo" name="descricao" rows="7"><?= htmlspecialchars($autora['descricao'] ?? '') ?></textarea>
+        <?php if (!empty($errors['descricao'])): ?>
+            <span style="color:red"><?= htmlspecialchars($errors['descricao']) ?></span>
+        <?php endif; ?>
+    </div>
 </div>

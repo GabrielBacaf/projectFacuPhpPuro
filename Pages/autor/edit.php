@@ -6,7 +6,7 @@ ob_start();
 
 ?>
 
-<section>
+<section class="formCadastro">
    <form action="/projectFacuPhpPuro/controller/bookController.php" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="action" value="update">
         <input type="hidden" name="id" value="<?= $book['id']?>">

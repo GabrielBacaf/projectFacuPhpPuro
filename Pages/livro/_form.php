@@ -10,12 +10,9 @@
     <div>
         <label for="autor">Autor</label>
 
-        <select type="" name="autor_id" id="autor_id" required>
+        <select name="autor_id" id="autor_id" required>
             <option value="">Selecione a autora</option>
-
             <?php
-
-            // Supondo que $autoras seja um array vindo do banco
             foreach ($autoras as $autora) : ?>
                 <option value="<?= $autora['id'] ?>"
                     <?= isset($book['autor_id']) && $book['autor_id'] == $autora['id'] ? 'selected' : '' ?>>
@@ -25,7 +22,6 @@
         </select>
 
     </div>
-
 
     <div>
         <label for="editora">Editora</label>
@@ -53,7 +49,7 @@
 
     <div>
         <label for="imagem">Imagem do Livro</label>
-        <input type="file" name="imagem" id="imagem" accept="image/*">
+        <input class="file" type="file" name="imagem" accept="image/*">
         <?php if (!empty($errors['imagem'])): ?>
             <span style="color:red"><?= htmlspecialchars($errors['imagem']) ?></span>
         <?php endif; ?>
@@ -61,7 +57,7 @@
 
     <div>
         <label for="resumo">Resumo do Livro</label>
-        <textarea style="width: calc(200% + 20px);" name="resumo" id="resumo" rows="5" ><?= htmlspecialchars($book['resumo'] ?? '') ?></textarea>
+        <textarea class="resumo" name="resumo" rows="7"><?= htmlspecialchars($book['resumo'] ?? '') ?></textarea>
         <?php if (!empty($errors['resumo'])): ?>
             <span style="color:red"><?= htmlspecialchars($errors['resumo']) ?></span>
         <?php endif; ?>

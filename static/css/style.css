@@ -10,7 +10,6 @@ body {
 
 .container {
     padding: 140px 20px 20px 20px;
-    /* topo 140px, direita/baixo/esquerda 20px */
     min-width: 1080px;
     width: 1600px;
     height: 1300px;
@@ -43,13 +42,18 @@ body {
 
 }
 
-/* #home {
-    width: 1200px;
-    height: 1080px;
+.formCadastro {
     display: flex;
-    justify-content: center;
-    box-sizing: border-box;
-} */
+    padding: 20px;
+    border-radius: 5%;
+    background-color: rgba(230, 222, 222, 0.154);
+}
+
+/* border: 2px solrgba(230, 222, 222, 0.189)
+    width: 1080px;
+    height: 1080px; */
+
+
 
 .navbar-transparente .nav-item .nav-link {
     color: white;
@@ -107,7 +111,7 @@ body {
 .row {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    gap: 50px;
     margin-top: 20px;
 
 }
@@ -127,7 +131,9 @@ label {
 
 input[type="text"],
 input[type="number"],
-input[type="file"] {
+input[type="file"],
+.resumo,
+select {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -139,21 +145,36 @@ input[type="file"] {
 
 input[type="text"]:focus,
 input[type="number"]:focus,
-input[type="file"]:focus {
+input[type="file"]:focus,
+select:focus {
     border-color: #007BFF;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
     outline: none;
 
 }
 
+.resumo {
+    width: calc(200% + 20px);
+}
+
+.resumo:focus {
+    border-color: #007BFF;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    outline: none;
+}
+
+.file {
+    background-color: white;
+}
+
 button {
     margin-top: 20px;
-
     padding: 12px 20px;
     border: none;
     border-radius: 8px;
     background-color: #007BFF;
     color: white;
+    justify-content: right;
     font-size: 16px;
     cursor: pointer;
     transition: 0.3s;
@@ -180,33 +201,38 @@ h1 {
     text-shadow: rgba(0, 0, 0, 0.724);
 }
 
-#criarLivro {
+.button-azul {
     display: flex;
     justify-content: right;
+}
+
+select {
+    height: 40px;
+
 }
 
 .flash-message {
     position: relative;
     width: 75vw;
-    height: 75px; 
+    height: 75px;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 24px;
     font-weight: bold;
     text-align: center;
-   
+
 }
 
 .flash-message.success {
     background-color: #d4edda;
     color: #155724;
-    
-    
+
+
 }
 
 .flash-message.error {
     background-color: #f8d7da;
     color: #721c24;
-    
+
 }

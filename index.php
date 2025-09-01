@@ -11,7 +11,7 @@ ob_start(); // começa a capturar o HTML
     <div class="row">
         <?php include_once __DIR__ . '/Pages/fragments/session.php'; ?> 
     </div>
-    <div id="criarLivro">
+    <div class="button-azul">
         <form class="button" action="controller/bookController.php" method="GET" style="display:inline">
             <input type="hidden" name="action" value="create">
             <button type="submit">Cadastrar </button>

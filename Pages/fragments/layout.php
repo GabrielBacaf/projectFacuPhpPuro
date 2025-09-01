@@ -11,9 +11,7 @@
     <header>
         <?php include_once __DIR__ . '/header.php'; ?>
     </header>
-   
-
-    <main id="home">
+    <main>
         <div class="container">
             <div>
                 <?php include_once __DIR__ . '/session.php'; ?>
