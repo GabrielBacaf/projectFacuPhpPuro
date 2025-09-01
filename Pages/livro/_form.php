@@ -59,11 +59,11 @@
         <?php endif; ?>
     </div>
 
-    <!-- <div>
+    <div>
         <label for="resumo">Resumo do Livro</label>
         <textarea style="width: calc(200% + 20px);" name="resumo" id="resumo" rows="5" ><?= htmlspecialchars($book['resumo'] ?? '') ?></textarea>
         <?php if (!empty($errors['resumo'])): ?>
             <span style="color:red"><?= htmlspecialchars($errors['resumo']) ?></span>
         <?php endif; ?>
-    </div> -->
+    </div>
 </div>

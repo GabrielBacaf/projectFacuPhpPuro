@@ -16,7 +16,7 @@ ob_start();
     <form action="/projectFacuPhpPuro/controller/bookController.php" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="action" value="store">
 
-        <h1>Cadastro do  Livro</h1>
+        <h1>Cadastrar Livro</h1>
         <?php include_once __DIR__ . '/_form.php'; ?>
         <button type="submit">Enviar</button>
     </form>
