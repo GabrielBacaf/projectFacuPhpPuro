@@ -24,12 +24,16 @@
             <span style="color:red"><?= htmlspecialchars($errors['imagem']) ?></span>
         <?php endif; ?>
     </div>
+    <div>
+        
+    </div>
 
     <div>
         <label for="descricao">Descrição/Biografia</label>
-        <textarea class="resumo" name="descricao" rows="7"><?= htmlspecialchars($autora['descricao'] ?? '') ?></textarea>
+        <textarea class="resumo" name="descricao" rows="7"><?= htmlspecialchars($book['descricao'] ?? '') ?></textarea>
         <?php if (!empty($errors['descricao'])): ?>
             <span style="color:red"><?= htmlspecialchars($errors['descricao']) ?></span>
         <?php endif; ?>
     </div>
+
 </div>

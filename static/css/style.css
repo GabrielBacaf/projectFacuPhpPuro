@@ -49,11 +49,6 @@ body {
     background-color: rgba(230, 222, 222, 0.154);
 }
 
-/* border: 2px solrgba(230, 222, 222, 0.189)
-    width: 1080px;
-    height: 1080px; */
-
-
 
 .navbar-transparente .nav-item .nav-link {
     color: white;
@@ -66,6 +61,10 @@ body {
 .navbar-transparente .nav-item .nav-link:hover {
     color: hsla(243, 89%, 18%, 0.275);
 
+}
+
+.imagemSrc{
+       
 }
 
 .lista-livros {
@@ -146,6 +145,7 @@ select {
 input[type="text"]:focus,
 input[type="number"]:focus,
 input[type="file"]:focus,
+.resumo:focus,
 select:focus {
     border-color: #007BFF;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
@@ -157,11 +157,6 @@ select:focus {
     width: calc(200% + 20px);
 }
 
-.resumo:focus {
-    border-color: #007BFF;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-    outline: none;
-}
 
 .file {
     background-color: white;
