@@ -1,25 +1,25 @@
 <div class="row">
     <div>
         <label for="nome">Nome</label>
-        <input required type="text" name="nome" id="nome" value="<?= htmlspecialchars($autora['nome'] ?? '') ?>">
+        <input autocomplete="off" required type="text" name="nome" id="nome" value="<?= htmlspecialchars($autora['nome'] ?? '') ?>">
     </div>
     <div>
         <label for="idade">Idade</label>
-        <input type="number" name="idade" id="idade" value="<?= htmlspecialchars($autora['idade'] ?? '') ?>">
+        <input autocomplete="off" type="number" name="idade" id="idade" value="<?= htmlspecialchars($autora['idade'] ?? '') ?>">
     </div>
     <div>
         <label for="nacionalidade">Nacionalidade</label>
-        <input type="text" name="nacionalidade" id="nacionalidade" value="<?= htmlspecialchars($autora['nacionalidade'] ?? '') ?>">
+        <input autocomplete="off" type="text" name="nacionalidade" id="nacionalidade" value="<?= htmlspecialchars($autora['nacionalidade'] ?? '') ?>">
     </div>
 
     <div>
         <label for="premios">Prêmios</label>
-        <input type="text" name="premios" id="premios" value="<?= htmlspecialchars($autora['premios'] ?? '') ?>">
+        <input autocomplete="off" type="text" name="premios" id="premios" value="<?= htmlspecialchars($autora['premios'] ?? '') ?>">
     </div>
 
     <div>
         <label for="imagem">Imagem do Autora</label>
-        <input class="file" type="file" name="imagem" accept="image/*">
+        <input autocomplete="off" class="file" type="file" name="imagem" accept="image/*">
         <?php if (!empty($errors['imagem'])): ?>
             <span style="color:red"><?= htmlspecialchars($errors['imagem']) ?></span>
         <?php endif; ?>

@@ -1,10 +1,8 @@
 <?php
-require_once __DIR__ . '/../../services/autoraService.php';
 session_start();
 $titulo = "Editar Livro";
 $errors = $_SESSION['validade'] ?? [];
 $book = $_SESSION['book'] ?? [];
-$autoras = listAutoras();
 unset($_SESSION['validade']);
 ob_start();
 

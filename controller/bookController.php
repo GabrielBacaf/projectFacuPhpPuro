@@ -45,7 +45,7 @@ switch ($action) {
         break;
 
     case 'edit':
-       session_start();
+        session_start();
         if (!empty($validade)) {
             $_SESSION['validade'] = $validade;
             $_SESSION['book'] = $_POST;
@@ -56,7 +56,7 @@ switch ($action) {
             $id = isset($_GET['id']) ? (int) $_GET['id'] : null;
             if ($id) {
 
-                $_SESSION['book'] = editBook($id);
+                $_SESSION['book'] = reuperarLivroId($id);
                 header('Location:  /projectFacuPhpPuro/pages/livro/edit.php');
                 exit;
             }
@@ -99,6 +99,24 @@ switch ($action) {
         header('Location:  /projectFacuPhpPuro/index.php');
         exit;
         break;
+
+        case 'show':
+        session_start();
+        
+        try {
+            $id = isset($_GET['id']) ? (int) $_GET['id'] : null;
+            if ($id) {
+                $_SESSION['book'] = reuperarLivroId($id);
+                header('Location:  /projectFacuPhpPuro/pages/livro/show.php');
+                exit;
+                break;
+            }
+        } catch (Exception $e) {
+            $_SESSION['error'] = $e->getMessage();
+        }
+        break;
+
+        
 
     default:
         echo "Ação inválida.";

@@ -36,7 +36,7 @@ function storeBook(array $data, array $file): bool
 
 
             // gera nome único com extensão
-            $imagemNome = uniqid('book_') . '.' . $ext;
+            $imagemNome = $data['titulo'] . $data['ano_publicacao']. $data['genero'] . '.' . $ext;
             $destino = __DIR__ . '/../static/img/' . $imagemNome;
 
             if (!move_uploaded_file($file['tmp_name'], $destino)) {
@@ -81,7 +81,7 @@ function storeBook(array $data, array $file): bool
         throw $e;
     }
 }
-function editBook(int $id): array
+function reuperarLivroId(int $id): array
 {
     $conn = conectaBanco();
 
@@ -137,8 +137,7 @@ function updateBook(array $data, array $file ): bool
                 throw new Exception("Formato de imagem inválido. Use jpg, jpeg, png ou gif.");
             }
 
-            // gera nome único
-            $imagemNome = uniqid('book_') . '.' . $ext;
+            $imagemNome = $data['titulo'] . $data['ano_publicacao']. $data['genero'] . '.' . $ext;
             $destino = __DIR__ . '/../static/img/' . $imagemNome;
 
             if (!move_uploaded_file($file['tmp_name'], $destino)) {

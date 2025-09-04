@@ -25,3 +25,24 @@ function listAutoras(): array
 
     return $autoras;
 }
+
+
+function reuperarNomeAutoraId(int $id): array
+{
+    $conn = conectaBanco();
+
+    $sql = "SELECT nome FROM autoras WHERE id = $id LIMIT 1";
+
+    $result = mysqli_query($conn, $sql);
+
+    $book = [];
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        $book = mysqli_fetch_assoc($result);
+    }
+
+    mysqli_free_result($result);
+    mysqli_close($conn);
+
+    return $book;
+}
