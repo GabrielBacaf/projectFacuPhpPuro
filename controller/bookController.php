@@ -45,11 +45,11 @@ switch ($action) {
         break;
 
     case 'edit':
-        session_start();
+       session_start();
         if (!empty($validade)) {
             $_SESSION['validade'] = $validade;
             $_SESSION['book'] = $_POST;
-            header('Location: /projectFacuPhpPuro/pages/livro/create.php');
+            header('Location: /projectFacuPhpPuro/pages/livro/edit.php');
             exit;
         }
         try {
@@ -68,7 +68,7 @@ switch ($action) {
     case 'update':
         session_start();
         try {
-            if (updateBook($_POST)) {
+            if (updateBook($_POST, $file)) {
                 $_SESSION['success'] = 'Livro Atualizado com sucesso!';
                 header('Location:  /projectFacuPhpPuro/index.php');
                 exit;

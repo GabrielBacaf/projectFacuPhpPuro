@@ -10,16 +10,19 @@
     <div>
         <label for="autor">Autor</label>
 
-        <select name="autor_id" id="autor_id" required>
+        <select name="autor_id" id="autor_id">
             <option value="">Selecione a autora</option>
             <?php
             foreach ($autoras as $autora) : ?>
                 <option value="<?= $autora['id'] ?>"
-                    <?= isset($book['autor_id']) && $book['autor_id'] == $autora['id'] ? 'selected' : '' ?>>
+                    <?= isset($book['autora_id']) && $book['autora_id'] == $autora['id'] ? 'selected' : '' ?>>
                     <?= htmlspecialchars($autora['nome']) ?>
                 </option>
             <?php endforeach; ?>
         </select>
+        <?php if (!empty($errors['autor_id'])): ?>
+            <span style="color:red"><?= htmlspecialchars($errors['autor_id']) ?></span>
+        <?php endif; ?>
 
     </div>
 

@@ -56,7 +56,8 @@ function conectaBanco()
             autora_id INT UNSIGNED NOT NULL,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY (autora_id) REFERENCES autoras(id) 
-                ON DELETE RESTRICT ON UPDATE CASCADE
+                ON DELETE CASCADE
+             ON UPDATE CASCADE
             )";
 
         if (!mysqli_query($conn, $sqlCreateBooks)) {

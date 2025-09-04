@@ -9,7 +9,16 @@ function validBook(array $data): array
     }
 
     foreach ($data as $key => $value) {
-        $fieldLabel = ($key === 'ano_publicacao') ? 'ano de publicação' : $key;
+        if ($key === 'autor_id') {
+            $fieldLabel = 'autor';
+        } elseif ($key === 'ano_publicacao') {
+            $fieldLabel = 'ano de publicação';
+        } else {
+            $fieldLabel = $key;
+        }
+
+
+
         $errors[$key] = empty($value)
             ? "O campo {$fieldLabel} não pode ser vazio."
             : true;
@@ -30,12 +39,12 @@ function validBook(array $data): array
 
         if ($errors[$key] !== true) continue;
 
-        // // autora_id tem que ser inteiro > 0
-        // $errors[$key] = ($key === 'autora_id' && (!is_numeric($value) || intval($value) <= 0))
-        //     ? "O campo {$key} deve ser um número válido."
-        //     : true;
 
-        // if ($errors[$key] !== true) continue;
+        $errors[$key] = ($key === 'autora_id' && (!is_numeric($value)))
+            ?  "O campo Autor deve ser um número válido."
+            : true;
+
+        if ($errors[$key] !== true) continue;
 
 
         if ($key === 'imagem' && is_array($value)) {

@@ -2,6 +2,7 @@
 require_once __DIR__ . '/../../services/autoraService.php';
 $titulo = "Cadastro do Livro";
 session_start();
+unset($_SESSION['book']);
 $errors = $_SESSION['validade'] ?? [];
 $book = $_SESSION['book'] ?? [];
 $autoras = listAutoras();

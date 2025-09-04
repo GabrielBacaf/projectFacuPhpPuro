@@ -23,7 +23,6 @@ function listBooks(): array
     return $books;
 }
 
-
 function storeBook(array $data, array $file): bool
 {
     try {
@@ -31,9 +30,12 @@ function storeBook(array $data, array $file): bool
 
         $imagemPath = null;
 
-        // Se veio arquivo de imagem (já validado no Request)
         if ($file && $file['error'] === UPLOAD_ERR_OK) {
-            $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
+
+            $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+
+
+            // gera nome único com extensão
             $imagemNome = uniqid('book_') . '.' . $ext;
             $destino = __DIR__ . '/../static/img/' . $imagemNome;
 
@@ -41,7 +43,7 @@ function storeBook(array $data, array $file): bool
                 throw new Exception("Falha ao mover o arquivo enviado.");
             }
 
-            $imagemPath = 'static/img/' . $imagemNome; // caminho relativo para o banco
+            $imagemPath = 'static/img/' . $imagemNome;
         }
 
         $sql = "INSERT INTO books (titulo, editora, ano_publicacao, genero, imagem, autora_id) 
@@ -54,14 +56,16 @@ function storeBook(array $data, array $file): bool
 
         mysqli_stmt_bind_param(
             $stmt,
-            "ssissi", // s=string, i=int
-            $data['titulo'],
-            $data['editora'],
-            $data['ano_publicacao'],
-            $data['genero'],
-            $imagemPath,
-            $data['autor_id'] // vem do <select>
+            "ssissi",
+            $data['titulo'],        // s
+            $data['editora'],       // s
+            $data['ano_publicacao'], // i
+            $data['genero'],        // s
+            $imagemPath,            // s
+            $data['autor_id']       // i
         );
+        
+        
 
         $result = mysqli_stmt_execute($stmt);
 
@@ -74,7 +78,7 @@ function storeBook(array $data, array $file): bool
 
         return true;
     } catch (Exception $e) {
-        throw $e; // repassa para o controller tratar
+        throw $e;
     }
 }
 function editBook(int $id): array
@@ -97,8 +101,7 @@ function editBook(int $id): array
     return $book;
 }
 
-
-function updateBook(array $data): bool
+function updateBook(array $data, array $file ): bool
 {
     try {
         $conn = conectaBanco();
@@ -109,13 +112,50 @@ function updateBook(array $data): bool
 
         $id = (int) $data['id'];
         $titulo = $data['titulo'] ?? '';
-        $autor = $data['autor'] ?? '';
+        $autor = $data['autor_id'] ?? ''; 
         $editora = $data['editora'] ?? '';
         $ano_publicacao = (int) ($data['ano_publicacao'] ?? 0);
         $genero = $data['genero'] ?? '';
 
+        
+        $sqlSelect = "SELECT imagem FROM books WHERE id = ?";
+        $stmtSelect = mysqli_prepare($conn, $sqlSelect);
+        mysqli_stmt_bind_param($stmtSelect, "i", $id);
+        mysqli_stmt_execute($stmtSelect);
+        mysqli_stmt_bind_result($stmtSelect, $imagemAtual);
+        mysqli_stmt_fetch($stmtSelect);
+        mysqli_stmt_close($stmtSelect);
+
+        $imagemPath = $imagemAtual;
+
+        // se enviar nova imagem, substitui
+        if ($file && $file['error'] === UPLOAD_ERR_OK) {
+            $ext = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
+            $extensoesPermitidas = ['jpg', 'jpeg', 'png', 'gif'];
+
+            if (!in_array($ext, $extensoesPermitidas)) {
+                throw new Exception("Formato de imagem inválido. Use jpg, jpeg, png ou gif.");
+            }
+
+            // gera nome único
+            $imagemNome = uniqid('book_') . '.' . $ext;
+            $destino = __DIR__ . '/../static/img/' . $imagemNome;
+
+            if (!move_uploaded_file($file['tmp_name'], $destino)) {
+                throw new Exception("Falha ao mover o arquivo enviado.");
+            }
+
+            // apaga a imagem antiga se existir
+            if ($imagemAtual && file_exists(__DIR__ . '/../' . $imagemAtual)) {
+                unlink(__DIR__ . '/../' . $imagemAtual);
+            }
+
+            $imagemPath = 'static/img/' . $imagemNome;
+        }
+
+        // atualiza os dados
         $sql = "UPDATE books 
-                SET titulo = ?, autor = ?, editora = ?, ano_publicacao = ?, genero = ? 
+                SET titulo = ?, editora = ?, ano_publicacao = ?, genero = ?, imagem = ?, autora_id = ?
                 WHERE id = ?";
 
         $stmt = mysqli_prepare($conn, $sql);
@@ -125,13 +165,14 @@ function updateBook(array $data): bool
 
         mysqli_stmt_bind_param(
             $stmt,
-            "sssisi", // tipos: string, string, string, int, string, int
-            $titulo,
-            $autor,
-            $editora,
-            $ano_publicacao,
-            $genero,
-            $id
+            "ssissii",
+            $titulo,        // s
+            $editora,       // s
+            $ano_publicacao, // i
+            $genero,        // s
+            $imagemPath,    // s
+            $autor,         // i
+            $id             // i
         );
 
         $result = mysqli_stmt_execute($stmt);
@@ -145,10 +186,10 @@ function updateBook(array $data): bool
 
         return true;
     } catch (Exception $e) {
-
         throw $e;
     }
 }
+
 
 function deleteBook(int $id): bool
 {
@@ -159,6 +200,24 @@ function deleteBook(int $id): bool
         if ($id <= 0) {
             throw new Exception("ID inválido para exclusão.");
         }
+        // Primeiro, pega o caminho da imagem do livro
+        $sqlSelect = "SELECT imagem FROM books WHERE id = ?";
+        $stmtSelect = mysqli_prepare($conn, $sqlSelect);
+        if (!$stmtSelect) {
+            throw new Exception("Erro ao preparar query de seleção: " . mysqli_error($conn));
+        }
+
+        mysqli_stmt_bind_param($stmtSelect, "i", $id);
+        mysqli_stmt_execute($stmtSelect);
+        mysqli_stmt_bind_result($stmtSelect, $imagemPath);
+        mysqli_stmt_fetch($stmtSelect);
+        mysqli_stmt_close($stmtSelect);
+
+        // Se existe imagem, tenta apagar do servidor
+        if ($imagemPath && file_exists(__DIR__ . '/../' . $imagemPath)) {
+            unlink(__DIR__ . '/../' . $imagemPath);
+        }
+
 
 
         $sql = "DELETE FROM books WHERE id = ?";
