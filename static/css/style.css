@@ -1,0 +1,250 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    font-family: Helvetica, Arial, sans-serif;
+    background-color: #f9f9f9;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-areas:
+        "header header"
+        "menu content"
+        "footer footer";
+    grid-template-rows: 120px 1fr 80px;
+    grid-template-columns: 250px 1fr;
+    height: 100vh;
+}
+
+header {
+    grid-area: header;
+    background-color: rgba(0, 0, 0, 0.724);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+    color: white;
+}
+
+aside {
+    grid-area: menu;
+    background-color: #444;
+    color: white;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+aside .nav-item {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+aside .nav-link {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2em;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    transition: background-color 0.3s;
+}
+
+aside .nav-link:hover {
+    background-color: #555;
+}
+
+main {
+    grid-area: content;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: #e9e9e9;
+}
+
+.container {
+    padding: 20px;
+    min-width: 1080px;
+    height: 1300px;
+    min-height: 900px;
+    margin: 0 auto;
+    background-color: rgba(217, 216, 226, 0.08);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+footer {
+    grid-area: footer;
+    background-color: #333;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.formCadastro {
+    display: flex;
+    padding: 20px;
+    border-radius: 5%;
+    background-color: rgba(230, 222, 222, 0.154);
+}
+
+.lista-livros {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.livro {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    width: 300px;
+    height: 400px;
+    padding: 15px;
+    text-align: center;
+    border-radius: 8px;
+    transition: transform 0.2s;
+    cursor: pointer;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.livro:hover {
+    transform: scale(1.05);
+}
+
+.livro img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.livro h2 {
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px;
+    margin-top: 20px;
+}
+
+.row div {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="file"],
+.resumo,
+select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: 0.3s;
+    box-sizing: border-box;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="file"]:focus,
+.resumo:focus,
+select:focus {
+    border-color: #007BFF;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    outline: none;
+}
+
+.resumo {
+    width: calc(200% + 20px);
+}
+
+.file {
+    background-color: white;
+}
+
+button {
+    margin-top: 20px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: #007BFF;
+    color: white;
+    justify-content: right;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+h1 {
+    justify-content: center;
+    font-size: 36px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.429);
+    text-align: center;
+    margin: 0;
+    padding: 20px 0;
+    text-shadow: rgba(0, 0, 0, 0.724);
+}
+
+.button-azul {
+    display: flex;
+    justify-content: right;
+}
+
+select {
+    height: 40px;
+}
+
+.flash-message {
+    position: relative;
+    width: 75vw;
+    height: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.flash-message.success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.flash-message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
