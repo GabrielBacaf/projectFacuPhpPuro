@@ -51,7 +51,7 @@ switch ($action) {
         }
         break;
 
-    // --- AÇÃO PARA BUSCAR DADOS E MOSTRAR O FORMULÁRIO DE EDIÇÃO ---
+    // AÇÃO PARA BUSCAR DADOS E MOSTRAR O FORMULÁRIO DE EDIÇÃO ---
     case 'edit':
         session_start();
         $id = isset($_GET['id']) ? (int) $_GET['id'] : null;
@@ -64,7 +64,7 @@ switch ($action) {
 
         try {
             // Recupera os dados do autor pelo ID
-            $autor = recuperarAutorId($id);
+            $autor = recuperarAutoraId($id);
             if ($autor) {
                 $_SESSION['autor_data'] = $autor;
                 header('Location: /projectFacuPhpPuro/pages/autor/edit.php');
@@ -113,7 +113,7 @@ switch ($action) {
         }
         break;
 
-    // AÇÃO PARA EXCLUIR UM AUTOR DO BANCO ---
+    // AÇÃO PARA EXCLUIR UM AUTOR DO BANCO 
     case 'delete':
         session_start();
         $id = isset($_POST['id']) ? (int) $_POST['id'] : null;
@@ -130,7 +130,7 @@ switch ($action) {
         exit;
         break;
 
-    // --- AÇÃO PARA MOSTRAR OS DETALHES DE UM AUTOR ---
+    // AÇÃO PARA MOSTRAR OS DETALHES DE UM AUTOR 
     case 'show':
         session_start();
         $id = isset($_GET['id']) ? (int) $_GET['id'] : null;
@@ -142,7 +142,7 @@ switch ($action) {
         }
         
         try {
-            $autor = recuperarAutorId($id);
+            $autor = recuperarAutoraId($id);
             if ($autor) {
                 $_SESSION['autor_data'] = $autor;
                 header('Location: /projectFacuPhpPuro/pages/autor/show.php');
@@ -165,4 +165,5 @@ switch ($action) {
         header('HTTP/1.0 404 Not Found');
         echo "Ação inválida.";
         exit;
+
 }
