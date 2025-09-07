@@ -9,6 +9,7 @@ function conectaBanco()
     $basedados  = "projetophp";
     $porta      = 3306;
 
+
     try {
 
         $conn = mysqli_connect($server, $user, $password, "", $porta);

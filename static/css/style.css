@@ -19,6 +19,8 @@ body {
 
 header {
     grid-area: header;
+    background-size: cover;
+    background-position: center;
     background-color: #34495e;
     color: white;
     display: flex;
@@ -32,7 +34,7 @@ header h1 {
     margin: 0;
     font-size: 2.5em;
     color: white;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra no texto para melhor leitura */
 }
 
 aside {
