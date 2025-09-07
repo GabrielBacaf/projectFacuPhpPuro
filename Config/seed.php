@@ -39,13 +39,13 @@ function seedBooks($conn)
         $sqlInsertBooks = "
             INSERT INTO books (titulo, autora_id, editora, ano_publicacao, genero, imagem, resumo)
             VALUES
-            ('Dom Casmurro', {$autoras['Machado de Assis']}, 'Editora Garnier', 1899, 'Romance', 'static/img/harryPotter.jpg', 'Dom Casmurro é um romance clássico de Machado de Assis que trata de amor, ciúme e memória.'),
-            ('O Cortiço', {$autoras['Aluísio Azevedo']}, 'Livraria Garnier', 1890, 'Romance', 'static/img/harryPotter.jpg', 'O Cortiço retrata a vida urbana e as tensões sociais do Rio de Janeiro do século XIX.'),
+            ('Dom Casmurro', {$autoras['Machado de Assis']}, 'Editora Garnier', 1899, 'Romance', 'static/img/Dom Casmurro.jpg', 'Dom Casmurro é um romance clássico de Machado de Assis que trata de amor, ciúme e memória.'),
+            ('O Cortiço', {$autoras['Aluísio Azevedo']}, 'Livraria Garnier', 1890, 'Romance', 'static/img/O Cortiço.jpg', 'O Cortiço retrata a vida urbana e as tensões sociais do Rio de Janeiro do século XIX.'),
             ('A Hora da Estrela', {$autoras['Clarice Lispector']}, 'Rocco', 1977, 'Ficção', 'static/img/harryPotter.jpg', 'A Hora da Estrela narra a vida de Macabéa, uma jovem nordestina vivendo no Rio de Janeiro.'),
             ('Memórias Póstumas de Brás Cubas', {$autoras['Machado de Assis']}, 'Garnier', 1881, 'Romance', 'static/img/harryPotter.jpg', 'O livro apresenta a visão do narrador Brás Cubas após a morte, em tom irônico e crítico.'),
-            ('Capitães da Areia', {$autoras['Jorge Amado']}, 'Companhia das Letras', 1937, 'Romance', 'static/img/harryPotter.jpg', 'Conta a vida de um grupo de meninos de rua em Salvador e seus conflitos com a sociedade.'),
+            ('Capitães da Areia', {$autoras['Jorge Amado']}, 'Companhia das Letras', 1937, 'Romance', 'static/img/Capitães da Areia1937Romance.jpg', 'Conta a vida de um grupo de meninos de rua em Salvador e seus conflitos com a sociedade.'),
             ('Grande Sertão: Veredas', {$autoras['Guimarães Rosa']}, 'Nova Fronteira', 1956, 'Romance', 'static/img/harryPotter.jpg', 'Romance modernista que explora a linguagem e a vida no sertão brasileiro.'),
-            ('Memórias Póstumas de Brás Cubas', {$autoras['Machado de Assis']}, 'Garnier', 1881, 'Romance', 'static/img/harryPotter.jpg', 'O livro apresenta a visão do narrador Brás Cubas após a morte, em tom irônico e crítico.'),
+            ('Memórias Póstumas de Brás Cubas', {$autoras['Machado de Assis']}, 'Garnier', 1881, 'Romance', 'static/img/Memórias Póstumas de Brás Cubas.jpg', 'O livro apresenta a visão do narrador Brás Cubas após a morte, em tom irônico e crítico.'),
 ('Dom Casmurro', {$autoras['Machado de Assis']}, 'Editora Garnier', 1899, 'Romance', 'static/img/harryPotter.jpg', 'Dom Casmurro é um romance clássico de Machado de Assis que trata de amor, ciúme e memória.');
             ";
         if (!mysqli_query($conn, $sqlInsertBooks)) {

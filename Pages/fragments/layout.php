@@ -10,13 +10,11 @@
 <body>
     <div class="grid-container">
         <header>
-            <div class="header-container">
-                <h1>Bibliotca Virtual</h1>
-            </div>
-        </header>
+        <?php include_once __DIR__ . '/header.php'; ?>
+    </header>
 
         <aside>
-            <?php include_once __DIR__ . '/header.php'; ?>
+            <?php include_once __DIR__ . '/aside.php'; ?>
         </aside>
 
         <main>
@@ -30,9 +28,7 @@
         </main>
 
         <footer>
-            <div class="footer-container">
-                <p>Trabalho de avaliação prática da disciplina WEB1, desenvolvido com carinho pelo grupo CRIMPADORES!!.</p>
-            </div>
+            <?php include_once __DIR__ . '/footer.php'; ?>
         </footer>
     </div>
 </body>
