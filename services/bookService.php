@@ -1,14 +1,29 @@
 <?php
 require_once __DIR__ . '/../Config/conexao.php';
 
-function listBooks(): array
+function listBooks(?string $searchTerm = null): array
 {
     $conn = conectaBanco();
 
-    $sql = "SELECT * FROM books";
+    $sql = "SELECT b.*, a.nome as autora_nome FROM books b JOIN autoras a ON b.autora_id = a.id";
+    $params = [];
+    $types = '';
 
+    if ($searchTerm) {
+        $sql .= " WHERE b.titulo LIKE ? OR a.nome LIKE ? OR b.genero LIKE ?";
+        $searchTerm = '%' . $searchTerm . '%';
+        $params = [$searchTerm, $searchTerm, $searchTerm];
+        $types = 'sss';
+    }
 
-    $result = mysqli_query($conn, $sql);
+    $stmt = mysqli_prepare($conn, $sql);
+
+    if ($searchTerm) {
+        mysqli_stmt_bind_param($stmt, $types, ...$params);
+    }
+
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
 
     $books = [];
 
@@ -18,10 +33,12 @@ function listBooks(): array
         }
         mysqli_free_result($result);
     }
+    mysqli_stmt_close($stmt);
     mysqli_close($conn);
 
     return $books;
 }
+
 
 function storeBook(array $data, array $file): bool
 {
