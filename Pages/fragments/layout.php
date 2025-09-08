@@ -8,20 +8,31 @@
 </head>
 
 <body>
-    <header>
+
+    <div class="grid-container">
+        <header>
         <?php include_once __DIR__ . '/header.php'; ?>
     </header>
-    <main>
-        <div class="container">
-            <div>
-                <?php include_once __DIR__ . '/session.php'; ?>
+
+        <aside>
+            <?php include_once __DIR__ . '/aside.php'; ?>
+        </aside>
+
+        <main>
+            <div class="container">
+                <div>
+                    <?php include_once __DIR__ . '/session.php'; ?>
+                </div>
+
+                <?= $conteudo ?? '' ?>
             </div>
+        </main>
 
-            <?= $conteudo ?? '' ?>
-        </div>
-    </main>
+        <footer>
+            <?php include_once __DIR__ . '/footer.php'; ?>
+        </footer>
+    </div>
 
-    <!-- <?php include_once __DIR__ . '/footer.php'; ?> -->
 </body>
 
 </html>

@@ -1,3 +1,4 @@
+
 <?php
 
 
@@ -54,4 +55,5 @@ function validAutora(array $data, ?array $file): array
     }
 
     return $errors;
+
 }

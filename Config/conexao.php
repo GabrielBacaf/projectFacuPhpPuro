@@ -7,7 +7,8 @@ function conectaBanco()
     $user       = "root";
     $password   = "";
     $basedados  = "projetophp";
-    $porta      = 3307;
+    $porta      = 3306;
+
 
     try {
 
