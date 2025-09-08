@@ -58,17 +58,16 @@ C:\xampp\phpMyAdmin\config.inc.php.
 --------------------------
 Notas do Arthur 
 dia 06-09
-a responsatividade com formato celular/tablet ta sendo feita pela @media no style.css
-
-alterações feitas em toda sessão "fragmentes" acarretando tbm em mudanças no style.css pra aplicações das mesmas
-
+A responsatividade com formato celular/tablet ta sendo feita pela @media no style.css
+alterações feitas em toda sessão "fragmentes" acarretando tbm em mudanças no style.css pra   Aplicações das mesmas
 boas praticas aplicadas na sessão "fragmentes"
 
 dia 07-09
 Botão enviar mais centralizado abaixo
-
 Adição de subtitulo na tela home
-
 Mudança na cloração do leyout 
-
 Mudança nos botões laterais
+
+dia 08-09
+Alterações feitas no container dos livros que haviam por algum motivo sido quebrados no style.css 
+Alteração feita no container principal pra ficar responsivo e não fixo com relação a quantidade e tamanho das caixas dos livros no stly.css // index.php // leyout.php
