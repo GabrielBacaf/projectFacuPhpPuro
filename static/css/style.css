@@ -23,6 +23,16 @@ body {
     box-sizing: border-box;
 }
 
+.main-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.main-header form:last-child {
+    margin-left: 20px;
+}
 
 .navbar-transparente {
     position: absolute;
