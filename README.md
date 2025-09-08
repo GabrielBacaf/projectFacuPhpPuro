@@ -54,3 +54,21 @@ A porta deve corresponder à utilizada pelo MySQL no Apache.
 Caso ocorram problemas de conexão, é possível alterar a porta diretamente no arquivo:
 C:\xampp\phpMyAdmin\config.inc.php.
 
+
+--------------------------
+Notas do Arthur 
+dia 06-09
+a responsatividade com formato celular/tablet ta sendo feita pela @media no style.css
+
+alterações feitas em toda sessão "fragmentes" acarretando tbm em mudanças no style.css pra aplicações das mesmas
+
+boas praticas aplicadas na sessão "fragmentes"
+
+dia 07-09
+Botão enviar mais centralizado abaixo
+
+Adição de subtitulo na tela home
+
+Mudança na cloração do leyout 
+
+Mudança nos botões laterais

@@ -177,4 +177,5 @@ function reuperarNomeAutoraId(int $id): ?array
     mysqli_close($conn);
 
     return $autora ?: null;
+
 }

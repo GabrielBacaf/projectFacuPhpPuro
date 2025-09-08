@@ -46,7 +46,7 @@ function seedBooks($conn)
             ('Capitães da Areia', {$autoras['Jorge Amado']}, 'Companhia das Letras', 1937, 'Romance', 'static/img/harryPotter.jpg', 'Conta a vida de um grupo de meninos de rua em Salvador e seus conflitos com a sociedade.'),
             ('Grande Sertão: Veredas', {$autoras['Guimarães Rosa']}, 'Nova Fronteira', 1956, 'Romance', 'static/img/harryPotter.jpg', 'Romance modernista que explora a linguagem e a vida no sertão brasileiro.'),
             ('Memórias Póstumas de Brás Cubas', {$autoras['Machado de Assis']}, 'Garnier', 1881, 'Romance', 'static/img/harryPotter.jpg', 'O livro apresenta a visão do narrador Brás Cubas após a morte, em tom irônico e crítico.'),
-('Dom Casmurro', {$autoras['Machado de Assis']}, 'Editora Garnier', 1899, 'Romance', 'static/img/harryPotter.jpg', 'Dom Casmurro é um romance clássico de Machado de Assis que trata de amor, ciúme e memória.');
+            ('Dom Casmurro', {$autoras['Machado de Assis']}, 'Editora Garnier', 1899, 'Romance', 'static/img/harryPotter.jpg', 'Dom Casmurro é um romance clássico de Machado de Assis que trata de amor, ciúme e memória.');
             ";
         if (!mysqli_query($conn, $sqlInsertBooks)) {
             throw new Exception("Erro ao inserir livros iniciais: " . mysqli_error($conn));
