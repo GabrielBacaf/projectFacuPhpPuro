@@ -277,8 +277,8 @@ select {
 }
 
 .flash-message {
-    width: 100%;                
-    padding: 20px;              
+    width: 100%;           /*fiz auterações pra centralizar melhor as mensagens de sucesso e falha*/
+    padding: 20px;        /*as mensagens estavam ultrapassando o campo do container main (arthur)*/      
     margin-bottom: 20px;        
     border-radius: 8px;         
     box-sizing: border-box;     
