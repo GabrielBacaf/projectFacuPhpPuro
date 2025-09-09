@@ -5,7 +5,7 @@ ob_start(); // captura todo o conteúdo da página
 ?>
 
 <section class="formCadastro">
-    <form action="/projectFacuPhpPuro/controller/bookController.php" method="POST" enctype="multipart/form-data">
+    <form action="/projectFacuPhpPuro/controller/autorController.php" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="action" value="store">
 
         <h1>Cadastre a Autora(o)</h1>
