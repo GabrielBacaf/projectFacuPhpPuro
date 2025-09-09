@@ -9,6 +9,8 @@ if (empty($books)) { ?>
 <?php } else { ?>
     <section class="lista-livros">
         <?php foreach ($books as $book): ?>
+            <a href="/projectFacuPhpPuro/controller/bookController.php?action=show&id=<?= htmlspecialchars($book['id']) ?>" 
+               style="text-decoration: none; color: inherit; display: block;">
             <article class="livro">
                 <img src="<?= htmlspecialchars($book['imagem']) ?>" alt="<?= htmlspecialchars($book['titulo']) ?>">
                 <h2><?= htmlspecialchars($book['titulo']) ?></h2>
