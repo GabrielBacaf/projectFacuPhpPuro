@@ -277,15 +277,17 @@ select {
 }
 
 .flash-message {
-    position: relative;
-    width: 75vw;
-    height: 75px;
+    width: 100%;                
+    padding: 20px;              
+    margin-bottom: 20px;        
+    border-radius: 8px;         
+    box-sizing: border-box;     
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: bold;
-    text-align: center;
+    text-align: center
 }
 
 .flash-message.success {
